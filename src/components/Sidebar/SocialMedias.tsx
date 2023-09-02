@@ -21,7 +21,7 @@ const SocialMedias = ({ classe }: ISocialMedias) => {
         <GitHubIcon style={{ color: sidebarItemClicked }} />
       </Link>
 
-      <Link href={Gmail} target="_blank">
+      <Link href={`mailto:${Gmail}`} target="_blank">
         <MailOutlineIcon style={{ color: sidebarItemClicked }} />
       </Link>
     </Box>
