@@ -36,8 +36,8 @@ const Layout = ({ children }: ILayout) => {
       <Hidden only={["xs", "sm"]}>
         <Grid container alignItems={"center"} className="h-full">
           <Grid
-            xs={2}
             item
+            xs={2}
             className={classNames(classes.sidebar, "h-full shadow-sm relative")}
           >
             <Sidebar />
