@@ -2,7 +2,7 @@ import { Box, Link } from "@mui/material";
 import { Github, Gmail, LinkedIn } from "../../utils/constants/socialMedia";
 
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GoogleIcon from "@mui/icons-material/Google";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import GitHubIcon from "@mui/icons-material/GitHub";
 import { sidebarItemClicked } from "../../assets/colors";
 import classNames from "classnames";
@@ -22,7 +22,7 @@ const SocialMedias = ({ classe }: ISocialMedias) => {
       </Link>
 
       <Link href={Gmail} target="_blank">
-        <GoogleIcon style={{ color: sidebarItemClicked }} />
+        <MailOutlineIcon style={{ color: sidebarItemClicked }} />
       </Link>
     </Box>
   );
