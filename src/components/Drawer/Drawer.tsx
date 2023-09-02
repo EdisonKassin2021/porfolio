@@ -1,7 +1,7 @@
 import Drawer from "@mui/material/Drawer";
 import SidebarMenu from "../Sidebar/SidebarMenu";
 import { MyPicture } from "../../assets/images/images";
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 interface IDrawerComponent {
   onClose: () => void;
@@ -21,6 +21,7 @@ const DrawerComponent = ({ onClose }: IDrawerComponent) => {
         </Box>
         <SidebarMenu onClose={onClose} />
       </Box>
+      <Button onClick={onClose}>Fermer</Button>
     </Drawer>
   );
 };
