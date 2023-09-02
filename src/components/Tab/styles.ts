@@ -1,4 +1,4 @@
-import { GreyDark } from "../../constants/colors";
+import { GreyDark } from "../../assets/colors";
 
 export default () => ({
   TabContainer: {
