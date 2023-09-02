@@ -10,7 +10,7 @@ interface IDrawerComponent {
 const DrawerComponent = ({ onClose }: IDrawerComponent) => {
   return (
     <Drawer anchor="left" open={true} onClose={onClose}>
-      <Box width={350} className="p-3 ">
+      <Box width={250} className="p-3 ">
         <Box className="flex justify-center items-center p-5">
           <img
             alt="my picture"
