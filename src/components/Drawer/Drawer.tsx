@@ -16,7 +16,12 @@ const DrawerComponent = ({ onClose }: IDrawerComponent) => {
             alt="my picture"
             src={MyPicture}
             className="shadow-sm"
-            style={{ width: 80, height: 80, borderRadius: "50%" }}
+            style={{
+              width: 80,
+              height: 80,
+              borderRadius: "50%",
+              objectFit: "cover",
+            }}
           />
         </Box>
         <SidebarMenu onClose={onClose} />
