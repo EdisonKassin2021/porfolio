@@ -14,7 +14,7 @@ const CVLayout = ({ title, children }: ICVPartHeader) => {
         color: sidebarItemClicked,
       }}
     >
-      <div className="mb-5">
+      <div className="mb-3">
         <div className="text-3xl w-full font-bold mb-5">{title}</div>
       </div>
 
