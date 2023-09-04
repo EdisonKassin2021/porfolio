@@ -21,6 +21,7 @@ interface ILayout {
 const Layout = ({ children }: ILayout) => {
   const classes = useStyle();
   const label = useAppSelector(getCurrentPageLabel);
+
   return (
     <Box className="w-full h-full">
       <Helmet>

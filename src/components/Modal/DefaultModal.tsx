@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { ReactNode } from "react";
 import ModalHeader from "./ModalHeader";
 import Modal from "./Modal";
@@ -10,10 +11,10 @@ import BasicCloseIcon from "../Icon/BasicCloseIcon";
 interface IDefaultModal {
   open: boolean;
   title?: ReactNode;
-  onClose?: () => void;
+  onClose?: (e?: any) => void;
   alignTop?: boolean;
   children: ReactNode;
-  onAction?: () => void;
+  onAction?: (event?: any) => void;
   hideTitleBox?: boolean;
   minWidth?: number | string;
   maxWidth?: number | string;
@@ -21,6 +22,15 @@ interface IDefaultModal {
   maxHeight?: number | string;
   fullWidth?: boolean;
   fullScreen?: boolean;
+  actionButtonTxt?: string;
+
+  actionButtonStyle?: object;
+  cancelButtonStyle?: object;
+
+  actionButtonClassName?: string;
+  cancelButtonClassName?: string;
+
+  disabled?: boolean;
 }
 const DefaultModal = ({
   open,
@@ -40,6 +50,15 @@ const DefaultModal = ({
   maxWidth,
   fullWidth = true,
   fullScreen = false,
+  actionButtonTxt,
+
+  actionButtonStyle,
+  cancelButtonStyle,
+
+  actionButtonClassName,
+  cancelButtonClassName,
+
+  disabled,
 }: IDefaultModal) => {
   return (
     <Modal
@@ -70,22 +89,24 @@ const DefaultModal = ({
         <ModalActions>
           {onClose && (
             <Button
-              onClick={(e) => {
-                e.stopPropagation();
-                onClose();
-              }}
+              onClick={onClose}
+              style={cancelButtonStyle}
+              className={cancelButtonClassName}
             >
               Annuler
             </Button>
           )}
           {onAction && (
             <Button
+              style={actionButtonStyle}
+              className={actionButtonClassName}
+              disabled={disabled}
               onClick={(e) => {
                 e.stopPropagation();
                 onAction();
               }}
             >
-              Confirmer
+              {actionButtonTxt ?? "Confirmer"}
             </Button>
           )}
         </ModalActions>

@@ -1,18 +1,32 @@
 import { Box, Button } from "@mui/material";
 import { sidebarBackground, sidebarItemClicked } from "../../assets/colors";
 import { useState } from "react";
+import Login from "../Login/Login";
+import { useAppSelector } from "../../redux/app/hooks";
+import { getSessionToken } from "../../redux/features/login/LoginSlice";
+import classNames from "classnames";
 
 const AboutMe = () => {
   const [voirPlus, setVoirPlus] = useState(false);
+  const [openLogin, setOpenLogin] = useState(false);
+
+  const token = useAppSelector(getSessionToken);
 
   return (
     <Box>
       <div className="text-xl py-1 pr-5">Hello there 👋</div>
       <div
-        className="text-5xl"
+        className={classNames("text-5xl", !token && "cursor-pointer")}
         style={{
           fontWeight: 700,
         }}
+        onClick={
+          !token
+            ? () => {
+                setOpenLogin(true);
+              }
+            : undefined
+        }
       >
         I'm Edison KASSIN
       </div>
@@ -56,6 +70,10 @@ const AboutMe = () => {
           </Button>
         </div>
       </div>
+
+      {openLogin && (
+        <Login open={openLogin} onClose={() => setOpenLogin(false)} />
+      )}
     </Box>
   );
 };
