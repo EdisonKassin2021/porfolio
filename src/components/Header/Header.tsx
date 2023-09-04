@@ -41,36 +41,38 @@ const Header = () => {
         <SocialMedias classe="flex items-center gap-5" />
       </Hidden>
 
-      {token && (
-        <div
-          className="flex items-center cursor-pointer"
-          style={{
-            fontSize: "10px",
-          }}
-          onClick={async () => {
-            if (!token) return;
-            //https://supabase.com/dashboard/project/hmexluljreaekzdfulwg/api?page=users
-            const { error } = await supabase.auth.signOut();
-            if (error) {
-              dispatch(
-                logout({
-                  success: false,
-                  error,
-                })
-              );
-            } else {
-              dispatch(
-                logout({
-                  success: true,
-                })
-              );
-            }
-          }}
-        >
-          <LogoutIcon />
-          <span>Se déconnecter</span>
-        </div>
-      )}
+      <div className="flex items-center justify-end">
+        {token && (
+          <div
+            className="flex items-center cursor-pointer"
+            style={{
+              fontSize: "10px",
+            }}
+            onClick={async () => {
+              if (!token) return;
+              //https://supabase.com/dashboard/project/hmexluljreaekzdfulwg/api?page=users
+              const { error } = await supabase.auth.signOut();
+              if (error) {
+                dispatch(
+                  logout({
+                    success: false,
+                    error,
+                  })
+                );
+              } else {
+                dispatch(
+                  logout({
+                    success: true,
+                  })
+                );
+              }
+            }}
+          >
+            <LogoutIcon />
+            <span>Se déconnecter</span>
+          </div>
+        )}
+      </div>
 
       {open && <DrawerComponent onClose={() => setOpen(false)} />}
     </Box>
