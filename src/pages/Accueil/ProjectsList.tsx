@@ -2,7 +2,7 @@ import { Box, Divider, Button } from "@mui/material";
 import CodeIcon from "@mui/icons-material/Code";
 import BasicCard from "./components/BasicCard";
 import AccountTreeIcon from "@mui/icons-material/AccountTree";
-import EditIcon from "@mui/icons-material/Edit";
+// import EditIcon from "@mui/icons-material/Edit";
 import PreviewIcon from "@mui/icons-material/Preview";
 import {
   sortObjectsByPropertyDescending,
@@ -39,12 +39,12 @@ const ProjectsList = ({ limit, projects }: IProjectsList) => {
   );
 
   const actions: IAction[] = [
-    {
-      label: "Modifier",
-      actionType: ACTION_TYPE.EDIT,
-      onClick: (id: string) => alert("EDIT " + id),
-      Icon: <EditIcon />,
-    },
+    // {
+    //   label: "Modifier",
+    //   actionType: ACTION_TYPE.EDIT,
+    //   onClick: (id: string) => alert("EDIT " + id),
+    //   Icon: <EditIcon />,
+    // },
     {
       label: "Visualiser",
       Icon: <PreviewIcon />,
@@ -76,27 +76,29 @@ const ProjectsList = ({ limit, projects }: IProjectsList) => {
           />
         ))}
 
-        <div className="flex justify-start mt-5">
-          <Button
-            className="shadow-md"
-            style={{
-              background: sidebarBackground,
-              color: sidebarItemClicked,
-              padding: "10px 50px",
-            }}
-            onClick={() => {
-              navigate(`${BASE_ROUTE}/projects`);
-              dispatch(
-                setNewPage({
-                  itemKey: "projects",
-                  itemLabel: "Projects",
-                })
-              );
-            }}
-          >
-            Voir plus
-          </Button>
-        </div>
+        {limit && _.size(projects) >= limit && (
+          <div className="flex justify-start mt-5">
+            <Button
+              className="shadow-md"
+              style={{
+                background: sidebarBackground,
+                color: sidebarItemClicked,
+                padding: "10px 50px",
+              }}
+              onClick={() => {
+                navigate(`${BASE_ROUTE}/projects`);
+                dispatch(
+                  setNewPage({
+                    itemKey: "projects",
+                    itemLabel: "Projects",
+                  })
+                );
+              }}
+            >
+              Voir plus
+            </Button>
+          </div>
+        )}
       </Box>
     </Box>
   );

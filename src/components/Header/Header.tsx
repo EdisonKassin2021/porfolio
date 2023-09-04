@@ -11,6 +11,7 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import supabase from "../../configs/supabase";
 import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
 import { getSessionToken, logout } from "../../redux/features/login/LoginSlice";
+import { sidebarItemClicked } from "../../assets/colors";
 
 const Header = () => {
   const screen = useScreenSize();
@@ -31,48 +32,47 @@ const Header = () => {
         _.includes(["xs", "sm"], screen) && "p-5"
       )}
     >
-      <Hidden only={["lg", "md", "xl"]}>
-        <SmallIconButton onClick={(e) => handleClick(e)}>
-          <MenuIcon />
-        </SmallIconButton>
-      </Hidden>
+      <Box>
+        <Hidden only={["lg", "md", "xl"]}>
+          <SmallIconButton onClick={(e) => handleClick(e)}>
+            <MenuIcon />
+          </SmallIconButton>
+        </Hidden>
+      </Box>
 
-      <Hidden only={["lg", "md", "xl"]}>
-        <SocialMedias classe="flex items-center gap-5" />
-      </Hidden>
+      <Box className={classNames(token && "flex items-center gap-5")}>
+        <Hidden only={["lg", "md", "xl"]}>
+          <SocialMedias classe="flex items-center gap-5" />
+        </Hidden>
 
-      <div className="flex items-center justify-end">
-        {token && (
-          <div
-            className="flex items-center cursor-pointer"
-            style={{
-              fontSize: "10px",
-            }}
-            onClick={async () => {
-              if (!token) return;
-              //https://supabase.com/dashboard/project/hmexluljreaekzdfulwg/api?page=users
-              const { error } = await supabase.auth.signOut();
-              if (error) {
-                dispatch(
-                  logout({
-                    success: false,
-                    error,
-                  })
-                );
-              } else {
-                dispatch(
-                  logout({
-                    success: true,
-                  })
-                );
-              }
-            }}
-          >
-            <LogoutIcon />
-            <span>Se déconnecter</span>
-          </div>
-        )}
-      </div>
+        <div className="flex items-center justify-end">
+          {token && (
+            <SmallIconButton
+              onClick={async () => {
+                if (!token) return;
+                //https://supabase.com/dashboard/project/hmexluljreaekzdfulwg/api?page=users
+                const { error } = await supabase.auth.signOut();
+                if (error) {
+                  dispatch(
+                    logout({
+                      success: false,
+                      error,
+                    })
+                  );
+                } else {
+                  dispatch(
+                    logout({
+                      success: true,
+                    })
+                  );
+                }
+              }}
+            >
+              <LogoutIcon style={{ color: sidebarItemClicked }} />
+            </SmallIconButton>
+          )}
+        </div>
+      </Box>
 
       {open && <DrawerComponent onClose={() => setOpen(false)} />}
     </Box>

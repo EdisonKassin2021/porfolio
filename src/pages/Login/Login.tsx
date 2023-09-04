@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 // import { useState } from "react";
 import DefaultModal from "../../components/Modal/DefaultModal";
 import CustomTextfield from "../../components/CustomTextfield/CustomTextfield";

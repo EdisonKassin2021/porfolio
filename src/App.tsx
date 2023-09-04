@@ -1,10 +1,14 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
+import { token, username } from "./configs/github";
+import { useAppDispatch } from "./redux/app/hooks";
+import { fetchGithubRealisation } from "./redux/features/realisations/RealisationSlice";
+import _ from "lodash";
 // import supabase from "./configs/supabase";
 
 function App() {
+  const dispatch = useAppDispatch();
   // const [errors, setErrors] = useState(null);
   // const [datas, setDatas] = useState(null);
 
@@ -19,30 +23,43 @@ function App() {
   // }, []);
 
   useEffect(() => {
-    // Remplacez 'votre_nom_utilisateur' par votre nom d'utilisateur GitHub
-    const username = "EdisonKassin2021";
+    (async () => {
+      // Configurer l'en-tête d'autorisation si vous avez un token d'accès GitHub
+      const headers = token ? { Authorization: `token ${token}` } : {};
 
-    // Remplacez 'votre_token_github' par votre token d'accès GitHub (si nécessaire)
-    const token = "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";
+      const response = await axios.get(
+        `https://api.github.com/users/${username}/repos`,
+        { headers }
+      );
 
-    // Configurer l'en-tête d'autorisation si vous avez un token d'accès GitHub
-    const headers = token ? { Authorization: `token ${token}` } : {};
+      // Filtrer les référentiels qui commencent par "PROJECT-"
+      const filteredRepositories = response.data.filter((repo: any) =>
+        repo.name.startsWith("PROJECT-")
+      );
 
-    axios
-      .get(`https://api.github.com/users/${username}/repos`, { headers })
-      .then((response) => {
-        // Filtrer les référentiels qui commencent par "PROJECT-"
-        const filteredRepositories = response.data.filter((repo: any) =>
-          repo.name.startsWith("PROJECT-")
+      if (response.status === 200) {
+        dispatch(
+          fetchGithubRealisation({
+            data: filteredRepositories,
+            realisations: _.map(filteredRepositories, (repo: any) => ({
+              name: repo.name,
+              id: repo.id,
+              git_url: repo.git_url,
+              description: repo.description,
+              archived: repo.archived,
+              created_at: repo.created_at,
+              edited_at: repo.edited_at,
+              download_path: repo.download_url,
+              languages_url: repo.languages_url,
+              size: repo.size,
+              visibility: repo.visibility,
+              url: repo.url,
+            })),
+          })
         );
-        console.log(filteredRepositories);
-      })
-      .catch((error) => {
-        console.error(
-          "Erreur lors de la récupération des référentiels GitHub :",
-          error
-        );
-      });
+      }
+    })();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

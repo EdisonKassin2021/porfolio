@@ -2,8 +2,15 @@ import { Box } from "@mui/material";
 import AboutMe from "./AboutMe";
 import ProjectsList from "./ProjectsList";
 import PostList from "./PostList";
+import { useAppSelector } from "../../redux/app/hooks";
+import {
+  IRealisation,
+  getRealisations,
+} from "../../redux/features/realisations/RealisationSlice";
+import _ from "lodash";
 
 const Accueil = () => {
+  const realisations = useAppSelector(getRealisations);
   return (
     <Box className="h-full">
       <Box
@@ -15,50 +22,13 @@ const Accueil = () => {
         <AboutMe />
         <ProjectsList
           limit={5}
-          projects={[
-            {
-              description: "This is a description",
-              id: "Id1",
-              name: "This is the name of Project",
-              path: "1",
-              created_at: new Date(Date.now()),
-            },
-            {
-              description: "This is a description",
-              id: "Id2",
-              name: "This is the name of Project",
-              path: "2",
-              created_at: new Date(Date.now()),
-            },
-            {
-              description: "This is a description",
-              id: "Id3",
-              name: "This is the name of Project",
-              path: "3",
-              created_at: new Date(Date.now()),
-            },
-            {
-              description: "This is a description",
-              id: "Id4",
-              name: "This is the name of Project",
-              path: "4",
-              created_at: new Date(Date.now()),
-            },
-            {
-              description: "This is a description",
-              id: "Id5",
-              name: "This is the name of Project",
-              path: "5",
-              created_at: new Date(Date.now()),
-            },
-            {
-              description: "This is a description",
-              id: "Id6",
-              name: "This is the name of Project",
-              path: "6",
-              created_at: new Date(Date.now()),
-            },
-          ]}
+          projects={_.map(realisations, (real: IRealisation) => ({
+            description: real.description,
+            id: real.id,
+            name: real.name,
+            path: "A ajouter",
+            created_at: real.created_at,
+          }))}
         />
         <PostList
           limit={3}

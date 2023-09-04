@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import _ from "lodash";
 import useFormState from "./useFormState";
 import { useEffect, useState } from "react";
