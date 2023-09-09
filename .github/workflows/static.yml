@@ -43,8 +43,8 @@ jobs:
         run: |
           echo "TOKEN=${{ secrets.API_TOKEN }}" >> $GITHUB_ENV
       - name: Déploie sur GitHub Pages
-      env:
-        GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
