@@ -27,7 +27,6 @@ function App() {
       // Configurer l'en-tête d'autorisation si vous avez un token d'accès GitHub
       const headers = token ? { Authorization: `token ${token}` } : {};
 
-      console.log("token: ", token);
       const response = await axios.get(
         `https://api.github.com/users/${username}/repos`,
         { headers }
@@ -43,7 +42,7 @@ function App() {
           fetchGithubRealisation({
             data: filteredRepositories,
             realisations: _.map(filteredRepositories, (repo: any) => ({
-              name: repo.name,
+              name: _.split(repo.name, "---")[1],
               id: repo.id,
               git_url: repo.git_url,
               description: repo.description,
