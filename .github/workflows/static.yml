@@ -52,6 +52,9 @@ jobs:
           # Upload dist repository
           path: "./dist"
 
+      - name: Variables d'environnement
+        run: echo ${{secrets.FETCH_API_TOKEN}}
+
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
