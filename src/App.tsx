@@ -27,6 +27,7 @@ function App() {
       // Configurer l'en-tête d'autorisation si vous avez un token d'accès GitHub
       const headers = token ? { Authorization: `token ${token}` } : {};
 
+      console.log("token: ", token);
       const response = await axios.get(
         `https://api.github.com/users/${username}/repos`,
         { headers }
