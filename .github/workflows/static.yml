@@ -53,7 +53,7 @@ jobs:
           path: "./dist"
 
       - name: Variables d'environnement
-        run: echo "TOKEN=$FETCH_API_TOKEN"
+        run: echo $FETCH_API_TOKEN
         env:
           FETCH_API_TOKEN: ${{ vars.FETCH_API_TOKEN }}
 
