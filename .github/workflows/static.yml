@@ -39,6 +39,9 @@ jobs:
         run: yarn install
       - name: Build
         run: yarn build
+      - name: Déploie sur GitHub Pages
+        env:
+          GITHUB_TOKEN: ${{ secrets.FETCH_API_TOKEN }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
