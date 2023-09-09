@@ -4,7 +4,7 @@ const getToken = () => {
     return import.meta.env.VITE_GITHUB_TOKEN;
   }
 
-  return process.env.FETCH_API_TOKEN;
+  return import.meta.env.FETCH_API_TOKEN;
 };
 
 export const username = import.meta.env.VITE_GITHUB_USERNAME;

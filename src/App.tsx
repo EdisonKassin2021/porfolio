@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
-import { token, username } from "./configs/github";
+import { env, token, username } from "./configs/github";
 import { useAppDispatch } from "./redux/app/hooks";
 import { fetchGithubRealisation } from "./redux/features/realisations/RealisationSlice";
 import _ from "lodash";
@@ -27,7 +27,7 @@ function App() {
       // Configurer l'en-tête d'autorisation si vous avez un token d'accès GitHub
       const headers = token ? { Authorization: `token ${token}` } : {};
 
-      console.log(token);
+      console.log("ENV: ", env, "\n TOKEN: ", token);
 
       const response = await axios.get(
         `https://api.github.com/users/${username}/repos`,
