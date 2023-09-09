@@ -53,7 +53,9 @@ jobs:
           path: "./dist"
 
       - name: Variables d'environnement
-        run: echo "TOKEN=${{ secrets.FETCH_API_TOKEN }}"
+        run: echo "TOKEN=${{ secrets.GITHUB_TOKEN }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.FETCH_API_TOKEN }}
 
       - name: Deploy to GitHub Pages
         id: deployment
