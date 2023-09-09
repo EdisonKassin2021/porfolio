@@ -1,4 +1,12 @@
-export const username = import.meta.env.VITE_GITHUB_USERNAME;
+export const isLocal = () => import.meta.env.VITE_ENV === "local";
+const getToken = () => {
+  if (isLocal()) {
+    return import.meta.env.VITE_GITHUB_TOKEN;
+  }
 
-// Remplacez 'votre_token_github' par votre token d'accès GitHub (si nécessaire)
-export const token = import.meta.env.VITE_GITHUB_TOKEN;
+  return process.env.FETCH_API_TOKEN;
+};
+
+export const username = import.meta.env.VITE_GITHUB_USERNAME;
+export const token = getToken();
+export const env = import.meta.env.VITE_ENV;

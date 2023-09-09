@@ -16,6 +16,7 @@ export default defineConfig({
             "process.env.VITE_GITHUB_USERNAME": JSON.stringify(
               process.env.VITE_GITHUB_USERNAME
             ),
+            "process.env.VITE_ENV": JSON.stringify(process.env.VITE_ENV),
           }),
         ],
         manualChunks: {
