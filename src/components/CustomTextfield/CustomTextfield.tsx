@@ -11,7 +11,7 @@ import { useState } from "react";
 import SmallIconButton from "../SmallIconButton";
 import { Red } from "../../assets/colors";
 
-interface ICustomTextfield extends BaseTextFieldProps {
+export interface ICustomTextfield extends BaseTextFieldProps {
   name: string;
   id: string;
   label?: string;
@@ -30,6 +30,7 @@ const CustomTextfield = ({
 }: ICustomTextfield) => {
   const [showPassword, setShowPassword] = useState(false);
   const [type, setType] = useState(getType(initialtype));
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -40,7 +41,7 @@ const CustomTextfield = ({
   };
 
   return (
-    <>
+    <Box className="mb-3">
       <TextField
         name={name}
         id={id}
@@ -71,8 +72,10 @@ const CustomTextfield = ({
         }}
         {...rest}
       />
-      <Box style={{ color: Red }}>{rest.error ? rest.error : null}</Box>
-    </>
+      <Box style={{ color: Red }}>
+        <div>{rest.error ? rest.error : null}</div>
+      </Box>
+    </Box>
   );
 };
 
@@ -88,6 +91,15 @@ const getType = (type: INPUT_TYPE) => {
 
     case INPUT_TYPE.EMAIL:
       return "email";
+
+    case INPUT_TYPE.DATE:
+      return "date";
+
+    case INPUT_TYPE.YEAR:
+      return "year";
+
+    case INPUT_TYPE.MONTH:
+      return "month";
 
     default:
       return "text";

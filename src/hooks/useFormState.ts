@@ -2,11 +2,6 @@
 
 import { useReducer, useState, useEffect } from "react";
 
-interface ILoginHooks {
-  email: string;
-  pwd: string;
-}
-
 export interface IValidateFunction<TAttributes> {
   ({ attributes }: { attributes: TAttributes }): any; // TODO: type "any"
 }
@@ -32,11 +27,11 @@ const formStateReducer = (state: any, action: IFormStateReducerAction) => {
   };
 };
 
-function useFormState({
+function useFormState<T>({
   initialAttributes,
   validate,
   validateWarnings,
-}: IUseFormState<ILoginHooks>) {
+}: IUseFormState<T>) {
   const [warnings, setWarnings] = useState<string | null>();
   const [errors, setErrors] = useState<any>();
 
@@ -78,7 +73,7 @@ function useFormState({
   };
 
   return {
-    attributes,
+    attributes: attributes as T,
     errors,
     warnings,
     handleInputChange,

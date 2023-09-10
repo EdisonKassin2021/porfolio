@@ -57,6 +57,8 @@ jobs:
         run: echo $FETCH_API_TOKEN
         env:
           FETCH_API_TOKEN: ${{ secrets.FETCH_API_TOKEN }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON: ${{ secrets.SUPABASE_ANON }}
 
       - name: Deploy to GitHub Pages
         id: deployment

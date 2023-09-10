@@ -3,7 +3,7 @@ import CVLayout from "./CVLayout";
 
 const CVFormation = () => {
   return (
-    <CVLayout title="Formations">
+    <CVLayout title="Formations" subElement="formation">
       <CVTimeline
         timelines={[
           {

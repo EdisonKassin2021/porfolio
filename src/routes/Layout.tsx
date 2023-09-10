@@ -44,7 +44,7 @@ const Layout = ({ children }: ILayout) => {
             <Sidebar />
           </Grid>
 
-          <Grid xs={10} item className="h-full p-2">
+          <Grid xs={10} item className="h-full p-2 overflow-y-auto">
             <Header />
             {children}
           </Grid>

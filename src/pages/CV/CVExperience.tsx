@@ -3,7 +3,7 @@ import CVTimeline from "../../components/CustomTimeline/CustomTimeline";
 
 const CVExperience = () => {
   return (
-    <CVLayout title="Expériences ">
+    <CVLayout title="Expériences" subElement="experience">
       <CVTimeline
         timelines={[
           {

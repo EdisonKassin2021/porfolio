@@ -9,6 +9,9 @@ import Services from "../pages/Services";
 import Blogs from "../pages/Blogs";
 import CustomCV from "../pages/CV";
 import Contacts from "../pages/Contacts";
+import FormationForm from "../pages/CV/Formations/FormationForm";
+import CreateForm from "../pages/CV/Formations/CreateForm";
+import EditForm from "../pages/CV/Formations/EditForm";
 
 const RouteGroups = () => {
   return (
@@ -18,12 +21,18 @@ const RouteGroups = () => {
           <Route path="" element={<Accueil />} />
           <Route path="home" element={<Accueil />} />
           <Route path="home/voir-plus" element={<Accueil />} />
+
           <Route path="profils" element={<Profils />} />
           <Route path="projects" element={<Projects />} />
           <Route path="services" element={<Services />} />
           <Route path="blogs" element={<Blogs />} />
-          <Route path="cv" element={<CustomCV />} />
           <Route path="contacts" element={<Contacts />} />
+
+          <Route path="cv" element={<CustomCV />} />
+          <Route path="cv/formation" element={<FormationForm />}>
+            <Route path="create" element={<CreateForm />} />
+            <Route path="edit/:formation_id" element={<EditForm />} />
+          </Route>
         </Route>
       </Routes>
     </Layout>
