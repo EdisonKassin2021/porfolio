@@ -15,8 +15,8 @@ const getSupabaseAnonKey = () => {
   return import.meta.env.SUPABASE_ANON;
 };
 
-const url = getSupabaseUrl();
-export const anon = getSupabaseAnonKey();
+const url = getSupabaseUrl() ?? "";
+export const anon = getSupabaseAnonKey() ?? "";
 
 const supabase = createClient(url, anon);
 export default supabase;
