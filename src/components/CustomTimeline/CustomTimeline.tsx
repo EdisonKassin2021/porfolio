@@ -4,7 +4,7 @@ import {
   Timeline,
   TimelineItem,
   TimelineSeparator,
-  TimelineConnector,
+  // TimelineConnector,
   TimelineContent,
   TimelineDot,
 } from "@mui/lab";
@@ -12,9 +12,9 @@ import { timelineItemClasses } from "@mui/lab/TimelineItem";
 import { sidebarItemClicked } from "../../assets/colors";
 
 interface TimelineItemProps {
-  title: string;
-  subTitle: ReactNode;
-  description?: string;
+  title: ReactNode;
+  subTitle?: ReactNode;
+  description?: ReactNode;
 }
 
 const TimelineEntry: React.FC<TimelineItemProps> = ({
@@ -23,7 +23,7 @@ const TimelineEntry: React.FC<TimelineItemProps> = ({
   description,
 }) => {
   return (
-    <TimelineItem>
+    <TimelineItem className="flex items-start">
       <TimelineSeparator>
         <TimelineDot
           style={{
@@ -33,13 +33,13 @@ const TimelineEntry: React.FC<TimelineItemProps> = ({
             background: sidebarItemClicked,
           }}
         />
-        <TimelineConnector />
+        {/* <TimelineConnector /> */}
       </TimelineSeparator>
 
       <TimelineContent>
         <Box>
           <div className="font-semibold mb-1">{title}</div>
-          <div className="font-light text-sm">{subTitle}</div>
+          {subTitle && <div className="font-light text-sm">{subTitle}</div>}
           {description && (
             <div>
               <p>{description}</p>

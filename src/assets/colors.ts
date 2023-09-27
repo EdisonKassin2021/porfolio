@@ -1,6 +1,7 @@
 export const sidebarBackground = "#f2f2f2";
 export const sidebarItemHover = "#e5e6e6";
 export const sidebarItemClicked = "#333c4d";
+export const secondSidebarBackground = "#092347";
 export const whiteColor = "#ffffff";
 
 // other colors (used for dashboards mainly)

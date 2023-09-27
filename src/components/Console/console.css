@@ -1,0 +1,36 @@
+/* Style du conteneur du tableau */
+.table-container {
+  margin: 20px;
+  padding: 10px; /* Espace autour du tableau */
+}
+
+/* Style de base pour le tableau */
+.custom-table {
+  border-collapse: collapse;
+  width: 100%;
+  background-color: transparent; /* Fond du tableau transparent */
+}
+
+/* Style des cellules de l'en-tête de colonne */
+.table-header {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  font-weight: 800;
+}
+
+/* Style des cellules du corps du tableau (alternance des couleurs) */
+.table-cell:nth-child(even) {
+  background-color: transparent; /* Fond des cellules pairs transparent */
+}
+
+.table-cell:nth-child(odd) {
+  background-color: transparent; /* Fond des cellules impairs transparent */
+}
+
+/* Style des cellules du corps du tableau */
+.table-cell {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}

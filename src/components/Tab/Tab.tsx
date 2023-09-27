@@ -10,6 +10,7 @@ interface ITab {
   hidden?: boolean;
   boxShadow?: boolean;
   noOverflow?: boolean;
+  className?: string;
 }
 
 /**

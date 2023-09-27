@@ -11,6 +11,7 @@ import _ from "lodash";
 
 const Accueil = () => {
   const realisations = useAppSelector(getRealisations);
+
   return (
     <Box className="h-full">
       <Box

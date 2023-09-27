@@ -1,10 +1,11 @@
-import { Outlet } from "react-router-dom";
+import { Navigate, Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { token, username } from "./configs/github";
 import { useAppDispatch } from "./redux/app/hooks";
 import { fetchGithubRealisation } from "./redux/features/realisations/RealisationSlice";
 import _ from "lodash";
+import { BASE_ROUTE } from "./routes/constants";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -51,6 +52,8 @@ function App() {
 
   return (
     <div className="h-full w-full">
+      {/* //TODO: A supprimer qd tout seras okey ligne 56*/}
+      <Navigate to={`${BASE_ROUTE}/maintenance`} />
       <Outlet />
     </div>
   );

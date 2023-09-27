@@ -32,11 +32,12 @@ const CustomTextfield = ({
   const [type, setType] = useState(getType(initialtype));
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    e.stopPropagation();
+    event.stopPropagation();
+
     if (onChange) {
-      onChange(e.target.value, name);
+      onChange(event.target.value, name);
     }
   };
 

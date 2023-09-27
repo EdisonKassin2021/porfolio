@@ -21,3 +21,10 @@ export function generateInt8Id() {
   const int8Id = _.random(-128, 127);
   return int8Id;
 }
+
+export function generateUniqueID() {
+  const timestamp = new Date().getTime(); // Récupère le timestamp actuel
+  const randomNum = Math.random(); // Génère un nombre aléatoire entre 0 et 1
+  const uniqueID = `${timestamp}-${randomNum}`; // Concatène le timestamp et le nombre aléatoire
+  return uniqueID;
+}
