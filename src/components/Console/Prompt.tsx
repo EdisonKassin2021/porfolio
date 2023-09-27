@@ -20,14 +20,13 @@ export const getOutput = (input: CONSOLE_COMMANDS | string): ReactNode => {
               <tr>
                 <td className="table-cell">help</td>
                 <td className="table-cell">
-                  Devrait retourner la liste des commandes disponibles
+                  Retourne la liste des commandes disponibles
                 </td>
               </tr>
               <tr>
                 <td className="table-cell">info</td>
                 <td className="table-cell">
-                  Devrait retourner toutes les informations concernant
-                  l'administrateur
+                  Retourne toutes les informations concernant l'administrateur
                 </td>
               </tr>
             </tbody>
