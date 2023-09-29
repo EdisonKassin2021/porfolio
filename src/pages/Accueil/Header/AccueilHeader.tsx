@@ -1,7 +1,7 @@
 import { Box, Divider, Hidden, List, Menu } from "@mui/material";
 import { White } from "../../../assets/colors";
 import { BASE_ROUTE } from "../../../routes/constants";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "./../../../assets/images/Logo.jpeg";
 import { HeaderSocialMedia } from "../Home";
 import LinkedIn from "@mui/icons-material/LinkedIn";
@@ -14,6 +14,7 @@ import React from "react";
 
 const AccueilHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const navigate = useNavigate();
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -53,8 +54,11 @@ const AccueilHeader = () => {
               />
               <HeaderSocialMedia
                 label={"Application"}
-                link={`${BASE_ROUTE}/home`}
                 withTarget={false}
+                noApplyLink
+                onClick={() => {
+                  navigate(`${BASE_ROUTE}/maintenance`); //TODO: A corriger => envoyer plus tard vers `${BASE_ROUTE}/home`
+                }}
               />
             </List>
           </Box>

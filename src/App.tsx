@@ -52,8 +52,6 @@ function App() {
 
   return (
     <div className="h-full w-full">
-      {/* //TODO: A supprimer qd tout seras okey ligne 56*/}
-      <Navigate to={`${BASE_ROUTE}/maintenance`} />
       <Outlet />
     </div>
   );

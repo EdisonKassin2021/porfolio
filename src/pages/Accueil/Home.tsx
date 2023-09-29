@@ -132,20 +132,36 @@ export const HeaderSocialMedia = ({
   link,
   style,
   withTarget = true,
+  noApplyLink = false,
+  onClick,
 }: any) => {
   return (
-    <ListItem>
-      <MuiLink
-        href={link}
-        style={{
-          textDecoration: "none",
-          ...style,
-        }}
-        className="flex gap-3 items-center cursor-pointer"
-        target={withTarget ? "_blank" : undefined}
-      >
-        {Icon && <span>{Icon}</span>} {label && <span>{label}</span>}
-      </MuiLink>
+    <ListItem onClick={onClick}>
+      {!noApplyLink ? (
+        <MuiLink
+          href={link}
+          style={{
+            textDecoration: "none",
+            color: "blue",
+            ...style,
+          }}
+          className="flex gap-3 items-center cursor-pointer"
+          target={withTarget ? "_blank" : undefined}
+        >
+          {Icon && <span>{Icon}</span>} {label && <span>{label}</span>}
+        </MuiLink>
+      ) : (
+        <div
+          style={{
+            textDecoration: "none",
+            color: "blue",
+            ...style,
+          }}
+          className="flex gap-3 items-center cursor-pointer"
+        >
+          {Icon && <span>{Icon}</span>} {label && <span>{label}</span>}
+        </div>
+      )}
     </ListItem>
   );
 };
