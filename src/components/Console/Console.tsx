@@ -24,7 +24,7 @@ const Console = ({
 
   return (
     <Box className="w-full pb-10 rounded-md" style={{ background }}>
-      <Box className="w-full  bg-transparent" style={{ height: 300 }}>
+      <Box className="w-full  bg-transparent">
         <ColoredCircles />
         <Divider style={{ height: "3px", background: dividerBackground }} />
         <Box
