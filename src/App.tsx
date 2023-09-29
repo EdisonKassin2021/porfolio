@@ -1,11 +1,10 @@
-import { Navigate, Outlet } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 import { useEffect } from "react";
 import axios from "axios";
 import { token, username } from "./configs/github";
 import { useAppDispatch } from "./redux/app/hooks";
 import { fetchGithubRealisation } from "./redux/features/realisations/RealisationSlice";
 import _ from "lodash";
-import { BASE_ROUTE } from "./routes/constants";
 
 function App() {
   const dispatch = useAppDispatch();
