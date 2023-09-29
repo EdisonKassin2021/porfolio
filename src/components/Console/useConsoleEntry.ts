@@ -1,6 +1,7 @@
 import { useState } from "react";
 import ReactDOMServer from "react-dom/server";
 import { getOutput } from "./Prompt";
+import _ from "lodash";
 
 function htmlToString(html: any) {
   const text = ReactDOMServer.renderToString(html);
@@ -21,10 +22,11 @@ const useConsoleEntry = () => {
 
   const onEnter = (value: string, key: string) => {
     if (key === "Enter") {
-      const newConsoleLine: string = htmlToString(getOutput(value));
+      const lowerValue = _.toLower(value);
+      const newConsoleLine: string = htmlToString(getOutput(lowerValue));
 
       setInput((prev: string[]) => {
-        return [...prev, value];
+        return [...prev, lowerValue];
       });
 
       return setOutput((prev: string[]) => {
