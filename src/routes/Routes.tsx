@@ -35,9 +35,11 @@ const RouteGroups = () => {
           index
           element={<Navigate to={`${BASE_ROUTE}/accueil`} />}
         />
+
         <Route path={`${BASE_ROUTE}/login`} element={<LoginScreen />} />
         <Route path={`${BASE_ROUTE}/accueil`} element={<Home />} />
         <Route path={`${BASE_ROUTE}/maintenance`} element={<Maintenance />} />
+
         <Route path={BASE_ROUTE} element={<App />}>
           <Route path="home" element={<Accueil />} />
           <Route path="home/voir-plus" element={<Accueil />} />
