@@ -122,8 +122,11 @@ const AccueilHeader = () => {
           />
           <HeaderSocialMedia
             label={"Application"}
-            link={`${BASE_ROUTE}/home`}
             withTarget={false}
+            noApplyLink
+            onClick={() => {
+              navigate(`${BASE_ROUTE}/maintenance`); //TODO: A corriger => envoyer plus tard vers `${BASE_ROUTE}/home`
+            }}
           />
           <Divider />
 

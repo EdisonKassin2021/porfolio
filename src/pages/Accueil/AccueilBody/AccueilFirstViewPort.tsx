@@ -41,7 +41,9 @@ const AccueilFirstViewPort = () => {
               <AccueilBodyIdentity />
             </Box>
 
-            <Console />
+            <Box className="mb-8">
+              <Console />
+            </Box>
           </Box>
         </Hidden>
 

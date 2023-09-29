@@ -87,6 +87,14 @@ const AcceuilSkillSet = () => {
       key: "git",
       url: "https://git-scm.com/images/logos/1color-orange-lightbg@2x.png",
     },
+    {
+      key: "vite",
+      url: "https://cdn.dribbble.com/users/1198445/screenshots/15064463/105628281-b86efa80-5e44-11eb-821c-87d5fddb9f8a.png",
+    },
+    {
+      key: "astro",
+      url: "https://cdn.dribbble.com/users/1198445/screenshots/15064463/105628281-b86efa80-5e44-11eb-821c-87d5fddb9f8a.png",
+    },
   ];
 
   const nbresPicked = _.size(imgs) / 2;
