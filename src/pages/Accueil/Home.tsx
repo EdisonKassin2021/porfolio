@@ -16,7 +16,6 @@ import AccueilBodyLastPosts from "./AccueilBody/AccueilBodyLastPosts";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import AcceuilSkillSet from "./AccueilBody/AcceuilSkillSet";
 
-import { usePDF } from "@react-pdf/renderer";
 import { EnglishCV, FrenchCV } from "../../assets/pdf/pdf";
 
 // Create styles
