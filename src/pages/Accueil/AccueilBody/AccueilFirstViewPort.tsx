@@ -12,6 +12,13 @@ const AccueilFirstViewPort = () => {
         height: "100vh",
       }}
     >
+      <Box className="w-full p-2 flex items-center justify-center bg-red-300 shadow-md">
+        <span className="text-center text-white">
+          <span className="underline font-extrabold">Note:</span> Toutes les
+          sections de ce site ne sont pas disponibles. Ce site est en cours de
+          construction
+        </span>
+      </Box>
       <Box
         className="w-full h-full p-5"
         style={{

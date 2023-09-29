@@ -21,7 +21,6 @@ export const CV = {
       title: "Product owner & développeur front-end",
       subtitle: ["Freelance", "Dakar, Senegal", "Janvier 2022 - Aout 2023"],
       description: [
-        "Maintenance et développement de l'application web FieldPro",
         "Prendre des décisions sur tech stack et travailler en étroite collaboration avec le reste de l'équipe afin d'améliorer constamment l'application.",
         "Coordonner l'équipe de travail et être en relation avec le client",
         "Maintenir un code propre, testé et documenté, en suivant les meilleurs standards.",

@@ -29,6 +29,19 @@ export const getOutput = (input: CONSOLE_COMMANDS | string): ReactNode => {
                   Retourne toutes les informations concernant l'administrateur
                 </td>
               </tr>
+              <tr>
+                <td className="table-cell">language</td>
+                <td className="table-cell">
+                  Retourne tous les niveaux de langues que l'administrateur
+                  parle
+                </td>
+              </tr>
+              <tr>
+                <td className="table-cell">formation</td>
+                <td className="table-cell">
+                  Retourne tous les diplômes de l'administrateur
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>
@@ -79,7 +92,7 @@ export const getOutput = (input: CONSOLE_COMMANDS | string): ReactNode => {
             <tbody>
               {_.map(CV.languages, (lang: any) => (
                 <tr>
-                  <td className="table-cell">{lang.intitule}/6</td>
+                  <td className="table-cell">{lang.intitule}</td>
                   <td className="table-cell">{lang.niveau}/6</td>
                 </tr>
               ))}

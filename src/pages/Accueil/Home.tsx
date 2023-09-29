@@ -1,4 +1,11 @@
-import { Box, Divider, ListItem, Link as MuiLink } from "@mui/material";
+import {
+  Box,
+  Button,
+  Divider,
+  Link,
+  ListItem,
+  Link as MuiLink,
+} from "@mui/material";
 
 import { White, WhiteSmoke } from "../../assets/colors";
 
@@ -9,8 +16,41 @@ import AccueilBodyLastPosts from "./AccueilBody/AccueilBodyLastPosts";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import AcceuilSkillSet from "./AccueilBody/AcceuilSkillSet";
 
+import { usePDF } from "@react-pdf/renderer";
+import { EnglishCV, FrenchCV } from "../../assets/pdf/pdf";
+
+// Create styles
+
 const Home = () => {
   const screen = useScreenSize();
+
+  const handleDownload = (filename: string, pdfUrl: string) => {
+    fetch(pdfUrl)
+      .then((response) => response.blob())
+      .then((blob) => {
+        // Créez un objet URL pour le blob
+        const url = window.URL.createObjectURL(blob);
+
+        // Créez un élément <a> pour le téléchargement
+        const a = document.createElement("a");
+        a.href = url;
+        a.download = `${filename}.pdf`; // Spécifiez le nom du fichier à télécharger
+        document.body.appendChild(a);
+
+        // Déclenchez le téléchargement
+        a.click();
+
+        // Libérez l'URL de l'objet blob
+        window.URL.revokeObjectURL(url);
+
+        // Supprimez l'élément <a> créé
+        document.body.removeChild(a);
+      })
+      .catch((error) => {
+        console.error("Erreur lors du téléchargement du PDF : ", error);
+      });
+  };
+
   return (
     <Box style={{ background: White }} className="h-full">
       <AccueilHeader />
@@ -37,6 +77,30 @@ const Home = () => {
       {/* ajouter le contact ici <Box className="p-5 grid shadow-md w-full">
         <AccueilBodyFooter />
       </Box> */}
+      <Box className="flex w-full justify-center items-center p-5 mt-3 gap-5 ">
+        <Button
+          style={{
+            background: "linear-gradient(to bottom, #2271b1, #818a96, red)",
+            color: White,
+          }}
+          onClick={() =>
+            handleDownload("Edison KASSIN - CV Francais", FrenchCV)
+          }
+        >
+          Télécharger mon CV en FRANCAIS
+        </Button>
+        <Button
+          style={{
+            background: "linear-gradient(to bottom, red, #818a96, #2271b1)",
+            color: White,
+          }}
+          onClick={() =>
+            handleDownload("Edison KASSIN - English CV", EnglishCV)
+          }
+        >
+          Télécharger mon CV en ANGLAIS
+        </Button>
+      </Box>
       <Box
         className="shadow-md bg-white p-5 flex justify-center items-center"
         style={{ background: WhiteSmoke }}
@@ -47,7 +111,16 @@ const Home = () => {
             {new Date(Date.now()).getFullYear()}
           </span>
           <span>&copy;</span>
-          <span>Edison KASSIN</span>
+          <span>
+            Tous droits réservés. Réalisé par{" "}
+            <Link
+              href="https://github.com/EdisonKassin2021"
+              target="_blank"
+              className="text-red-400"
+            >
+              Edison KASSIN
+            </Link>
+          </span>
         </div>
       </Box>
     </Box>

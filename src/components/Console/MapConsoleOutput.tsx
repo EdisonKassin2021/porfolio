@@ -34,7 +34,7 @@ const MapConsoleOutput = () => {
                 <input
                   type="text"
                   ref={inputText as any}
-                  value={input[index]}
+                  value={`get ${input[index]}`}
                   disabled
                   maxLength={100}
                   style={{

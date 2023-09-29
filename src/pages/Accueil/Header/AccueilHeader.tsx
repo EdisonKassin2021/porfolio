@@ -84,9 +84,7 @@ const AccueilHeader = () => {
               <HeaderSocialMedia
                 Icon={<GitHubIcon />}
                 label={"Github"}
-                link={
-                  "https://api.whatsapp.com/send?phone=221781192394&text=Hello%20Mr%20Edison%20KASSIN"
-                }
+                link={"https://github.com/EdisonKassin2021"}
                 style={{ color: "#000000" }}
               />
             </List>

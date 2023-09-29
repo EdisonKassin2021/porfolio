@@ -1,20 +1,14 @@
 import { Box, Divider, Button } from "@mui/material";
 import { OffWhite, White, secondSidebarBackground } from "../../assets/colors";
-import CVIdentity from "./CVIdentity";
 import _ from "lodash";
-import CVProfile from "./CVProfile";
-import CVExperience from "./CVExperience";
-import CVFormation from "./CVFormation";
+
 import DownloadIcon from "@mui/icons-material/Download";
 import generatePDF, { Resolution, Margin, Options } from "react-to-pdf";
-import CVSkills from "./CVSkills";
-import CVAccomplishment from "./CVAccomplishment";
-import CVLanguage from "./CVLanguage";
 import classNames from "classnames";
-import CVHobbies from "./CVHobbies";
 import { useState } from "react";
+import CVBody from "./CVBody";
 
-const options: Options = {
+export const downloadCVOptions: Options = {
   filename: "edison-kassin-cv.pdf",
   method: "save",
   // default is Resolution.MEDIUM = 3, which should be enough, higher values
@@ -69,32 +63,21 @@ const CustomCV = () => {
         startIcon={<DownloadIcon />}
         onClick={async () => {
           setLoading(true);
-          await generatePDF(getTargetElement, options);
+          await generatePDF(getTargetElement, downloadCVOptions);
           setLoading(false);
         }}
       >
         Telecharger en PDF
       </Button>
 
-      <Box id="content-cv">
-        <ChildrenLayout>
-          <CVIdentity />
-          <CVProfile />
-          <CVExperience />
-          <CVSkills />
-          <CVFormation />
-          <CVAccomplishment />
-          <CVLanguage />
-          <CVHobbies />
-        </ChildrenLayout>
-      </Box>
+      <CVBody />
     </Box>
   );
 };
 
 export default CustomCV;
 
-const ChildrenLayout = ({ children }: { children: React.ReactNode }) => {
+export const ChildrenLayout = ({ children }: { children: React.ReactNode }) => {
   const isArray = _.isArray(children);
 
   return (
