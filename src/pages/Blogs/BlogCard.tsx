@@ -1,18 +1,18 @@
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+// import Card from "@mui/material/Card";
+// import CardHeader from "@mui/material/CardHeader";
+// import CardMedia from "@mui/material/CardMedia";
+// import CardContent from "@mui/material/CardContent";
+// import CardActions from "@mui/material/CardActions";
+// import Avatar from "@mui/material/Avatar";
+// import IconButton from "@mui/material/IconButton";
+// import FavoriteIcon from "@mui/icons-material/Favorite";
+// import ShareIcon from "@mui/icons-material/Share";
+// import MoreVertIcon from "@mui/icons-material/MoreVert";
 import BlogImage from "../../assets/images/blogImage.jpg";
-import { MyPicture } from "../../assets/images/images";
-import { useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+// import { MyPicture } from "../../assets/images/images";
+// import { useState } from "react";
+// import { Menu, MenuItem } from "@mui/material";
+// import { useNavigate } from "react-router-dom";
 
 interface IBlogCard {
   blog: {
@@ -27,18 +27,19 @@ interface IBlogCard {
   withHead?: boolean;
 }
 
-export default function BlogCard({ blog, withHead = true }: IBlogCard) {
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const navigate = useNavigate();
+export default function BlogCard({ blog }: IBlogCard) {
+  // const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  // const navigate = useNavigate();
 
-  const { title, description, url, pictureUrl, subHeader, likes } = blog;
-  const open = Boolean(anchorEl);
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  const { /* title, description, */ url /*, pictureUrl, subHeader, likes */ } =
+    blog;
+  // const open = Boolean(anchorEl);
+  // const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  //   setAnchorEl(event.currentTarget);
+  // };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
