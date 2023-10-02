@@ -5,6 +5,7 @@ import AllInboxIcon from "@mui/icons-material/AllInbox";
 import BookIcon from "@mui/icons-material/Book";
 import WorkOutlineIcon from "@mui/icons-material/WorkOutline";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 export interface ISidebarItem {
   label: string;
@@ -32,9 +33,15 @@ export enum ACTION_TYPE {
 
 export const SidebarItems: ISidebarItem[] = [
   {
-    key: "home",
+    key: "accueil",
     label: "Home",
     Icon: HomeIcon,
+  },
+
+  {
+    key: "dashboard",
+    label: "Tableau de bords",
+    Icon: DashboardIcon,
   },
 
   {
@@ -63,7 +70,7 @@ export const SidebarItems: ISidebarItem[] = [
 
   {
     key: "cv",
-    label: "CV",
+    label: "Curriculum Vitae",
     Icon: WorkOutlineIcon,
   },
 

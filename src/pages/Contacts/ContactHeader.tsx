@@ -3,7 +3,7 @@ import { secondSidebarBackground } from "../../assets/colors";
 
 const ContactHeader = () => {
   return (
-    <Box className="text-4xl flex flex-col gap-3 p-5">
+    <Box className="text-xl flex flex-col gap-3 p-5">
       <div
         className="text-center uppercase font-bold"
         style={{ color: secondSidebarBackground }}

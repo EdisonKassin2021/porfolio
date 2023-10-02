@@ -91,10 +91,6 @@ const AcceuilSkillSet = () => {
       key: "vite",
       url: "https://cdn.dribbble.com/users/1198445/screenshots/15064463/105628281-b86efa80-5e44-11eb-821c-87d5fddb9f8a.png",
     },
-    {
-      key: "astro",
-      url: "https://cdn.dribbble.com/users/1198445/screenshots/15064463/105628281-b86efa80-5e44-11eb-821c-87d5fddb9f8a.png",
-    },
   ];
 
   const nbresPicked = _.size(imgs) / 2;
@@ -126,8 +122,12 @@ const AcceuilSkillSet = () => {
           _.includes(["sm", "xs"], screen) ? "grid-cols-3" : "grid-cols-4"
         )}
       >
-        {_.map(getImagesPicked(), (im: any) => (
-          <motion.div whileHover={{ scale: 0.8 }} viewport={{ once: true }}>
+        {_.map(getImagesPicked(), (im: any, index: number) => (
+          <motion.div
+            whileHover={{ scale: 0.8 }}
+            viewport={{ once: true }}
+            key={index}
+          >
             <div className="shadow-md rounded-md p-3">
               <img
                 src={im.url}

@@ -1,31 +1,34 @@
 import { Box, Button } from "@mui/material";
 import { useNavigate, useParams } from "react-router-dom";
 import _ from "lodash";
-import { Tab, Tabs } from "../../components/Tab";
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
 import { useEffect, useState } from "react";
 import { makeStyles } from "@material-ui/core";
 import classNames from "classnames";
 import CustomTextfield from "../../components/CustomTextfield/CustomTextfield";
 import {
   OffWhite,
+  Teal,
+  White,
+  cancelColor,
   secondSidebarBackground,
   secondaryColor,
 } from "../../assets/colors";
 import useFormState from "../../hooks/useFormState";
 import axios from "axios";
 import { generateUniqueID } from "../../utils/utils";
+import ForwardIcon from "@mui/icons-material/Forward";
 
 const useStyle = makeStyles({
   editorInput: {
     "& .ql-container.ql-snow": {
-      border: "none",
+      // border: "none",
     },
-
     "& .ql-toolbar.ql-snow": {
-      borderRadius: "4px",
+      // borderRadius: "4px",
     },
   },
 });
@@ -37,6 +40,8 @@ const modules = {
     ["bold", "italic", "underline", "strike"], // toggled buttons
     ["blockquote", "code-block"],
     ["link", "image", "video"],
+
+    [{ color: [] }, { background: [] }],
 
     [{ size: ["small", false, "large", "huge"] }], // custom dropdown
     [{ font: [] }],
@@ -143,102 +148,83 @@ const BlogsForm = () => {
   };
 
   return (
-    <Box className="h-full w-full">
-      <Tabs>
-        <Tab id="Form" label="Form" className="h-full w-full">
-          <Box className="h-full w-full px-12 py-3">
-            <Box>
-              <Box className="flex items-center gap-5 justify-between">
-                <div className="grow">
-                  <CustomTextfield
-                    id="title"
-                    name="title"
-                    fullWidth
-                    value={attributes.title}
-                    placeholder="Titre du blog"
-                    size="small"
-                    required
-                    onChange={handleInputChange}
-                  />
-                </div>
-                <div className="mb-3 flex gap-3 items-center">
-                  <Button
-                    style={{
-                      background: secondSidebarBackground,
-                      color: OffWhite,
-                    }}
-                    disabled={!_.isEmpty(errors)}
-                    onClick={handleCreate}
-                  >
-                    {blog_id ? "Modifier" : "Ajouter"}
-                  </Button>
+    <Box className="w-full h-full flex flex-col gap-3">
+      <Box className="p-3 flex justify-between items-center">
+        <div className="text-2xl font-bold">
+          {blog_id ? "Modifier ce post" : "Ajouter un nouveau post"}
+        </div>
+        <div className="flex gap-3 items-center">
+          <Button
+            style={{
+              background: secondSidebarBackground,
+              color: OffWhite,
+            }}
+            disabled={!_.isEmpty(errors)}
+            onClick={handleCreate}
+          >
+            {blog_id ? "Modifier" : "Ajouter"}
+          </Button>
 
-                  <Button
-                    style={{
-                      border: ` 1px solid ${secondaryColor}`,
-                      color: secondaryColor,
-                    }}
-                    disabled={_.isEmpty(value)}
-                    onClick={() => alert("publié")}
-                  >
-                    Publié
-                  </Button>
+          <Button
+            style={{
+              background: secondaryColor,
+              color: White,
+            }}
+            disabled={_.isEmpty(value)}
+            onClick={() => alert("publié")}
+          >
+            Publié
+          </Button>
 
-                  <Button
-                    style={{
-                      border: ` 1px solid ${secondSidebarBackground}`,
-                      color: secondSidebarBackground,
-                    }}
-                    onClick={() => navigate(-1)}
-                  >
-                    Annuler
-                  </Button>
-                </div>
-              </Box>
+          <Button
+            style={{
+              background: cancelColor,
+              color: secondSidebarBackground,
+            }}
+            onClick={() => navigate(-1)}
+          >
+            Annuler
+          </Button>
+        </div>
+      </Box>
 
-              <Box>
-                <CustomTextfield
-                  id="description"
-                  name="description"
-                  fullWidth
-                  value={attributes.description}
-                  placeholder="Brève description du blog"
-                  onChange={handleInputChange}
-                  size="small"
-                  multiline
-                  rows={2}
-                />
-              </Box>
-
-              <ReactQuill
-                theme="snow"
-                value={value}
-                onChange={setValue}
-                modules={modules}
-                className={classNames(classe.editorInput)}
-                placeholder="Créer votre blog ici !"
-              />
-            </Box>
+      <Box className="h-full w-full flex gap-3">
+        <Box style={{ flexGrow: 1, width: "50%" }} className="p-3 h-full">
+          <div className="grow">
+            <CustomTextfield
+              id="title"
+              name="title"
+              fullWidth
+              value={attributes.title}
+              placeholder="Titre du blog"
+              size="small"
+              required
+              onChange={handleInputChange}
+            />
+          </div>
+          <Box>
+            <ReactQuill
+              theme="snow"
+              value={value}
+              onChange={setValue}
+              modules={modules}
+              className={classNames(classe.editorInput)}
+              placeholder="Ecrivez votre post ici !"
+            />
           </Box>
-        </Tab>
-
-        <Tab id="Preview" label="Preview">
-          <Box className="px-10 py-3" style={{ height: "100vh" }}>
-            <Box className="h-full">
-              <h1
-                style={{
-                  fontWeight: "bold",
-                  fontSize: "24px",
-                }}
-              >
-                Title
-              </h1>
-
-              <div dangerouslySetInnerHTML={{ __html: value }} />
-            </Box>
+        </Box>
+        <div className="divider lg:divider-horizontal">
+          <ForwardIcon />
+        </div>
+        <Box
+          style={{ flexGrow: 1, width: "50%", background: Teal }}
+          className="p-3 h-full"
+        >
+          <Box className="shadow-sm rounded-sm p-3 bg-white h-full overflow-y-auto">
+            <ReactQuill theme={"bubble"} value={value} readOnly />
           </Box>
-        </Tab>
-      </Tabs>
+        </Box>
+      </Box>
     </Box>
   );
 };

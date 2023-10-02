@@ -73,9 +73,6 @@ const Home = () => {
         <AccueilBodyLastPosts />
       </Box>
 
-      {/* ajouter le contact ici <Box className="p-5 grid shadow-md w-full">
-        <AccueilBodyFooter />
-      </Box> */}
       <Box className="flex w-full justify-center items-center p-5 mt-3 gap-5 ">
         <Button
           style={{

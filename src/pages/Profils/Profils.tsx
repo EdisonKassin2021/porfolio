@@ -1,56 +1,49 @@
-import { Box, InputLabel, Divider } from "@mui/material";
+import { Box, Divider, InputLabel } from "@mui/material";
 import { MyPicture } from "../../assets/images/images";
-import { GreyLight } from "../../assets/colors";
 import { ReactNode } from "react";
 import { FlagIcon } from "react-flag-kit";
 import { GENDER } from "../../utils/constants/SidebarItem";
 import { motion } from "framer-motion";
+import { Teal } from "../../assets/colors";
+import { useScreenSize } from "../../hooks/useScreenSize";
+import classNames from "classnames";
+import _ from "lodash";
 
 const Profils = () => {
-  return (
-    <Box
-      className="p-20 h-full overflow-y-auto"
-      style={{
-        background: GreyLight, //"#333c4d",
-      }}
-    >
-      <Box className="shadow-sm rounded-xl bg-white p-3 w-full">
-        <Box className="p-3 flex items-center gap-3">
-          <span
-            className="text-xl font-bold uppercase"
-            style={{
-              color: "transparent",
-              backgroundImage: "linear-gradient(90deg, green, blue, red)",
-              backgroundClip: "text",
-              WebkitBackgroundClip: "text",
-            }}
-          >
-            Carte d'identité
-          </span>
-          <span>
-            <FlagIcon code="BJ" />
-          </span>
-          <span>
-            <FlagIcon code="SN" />
-          </span>
-        </Box>
-        <Divider />
-        <Box className="flex">
-          <Box style={{ width: "30%" }} className="flex justify-center mt-5">
-            <motion.div whileTap={{ scale: 1.2 }}>
-              <img
-                alt="Photo de profil"
-                src={MyPicture}
-                style={{
-                  borderRadius: "20px",
-                  width: 200,
-                  height: 250,
-                }}
-              />
-            </motion.div>
-          </Box>
+  const screen = useScreenSize();
 
-          <Box className="w-full grow p-3 px-10  overflow-y-auto">
+  return (
+    <Box className="h-full overflow-y-auto bg-white">
+      <div
+        className={classNames(
+          "flex-col my-5 p-8",
+          _.includes(["md", "lg", "xl"], screen) && "mx-32 shadow-md"
+        )}
+        style={{
+          border: _.includes(["md", "lg", "xl"], screen)
+            ? `2px solid ${Teal}`
+            : undefined,
+        }}
+      >
+        <div>
+          <motion.div whileTap={{ scale: 1.2 }}>
+            <img
+              alt="Photo de profil"
+              src={MyPicture}
+              className="rounded-lg shadow-2xl"
+              style={{
+                width: 200,
+                height: 200,
+                objectFit: "contain",
+              }}
+            />
+          </motion.div>
+        </div>
+
+        <Divider style={{ marginTop: "10px" }} />
+
+        <div className={classNames("py-6")}>
+          <Box className="w-full grow overflow-y-auto">
             <ShowInput label="Patronyme" value={<span>{"KASSIN"}</span>} />
             <ShowInput
               label="Prénoms"
@@ -99,22 +92,11 @@ const Profils = () => {
             />
             <ShowInput
               label="Numéro de téléphone"
-              value={<span>{"+221 78 119 23 94 / +221 76 122 48 84"}</span>}
+              value={<span>{"+221781192394/ +221761224884"}</span>}
             />
           </Box>
-        </Box>
-      </Box>
-
-      {/* Refléchir s'il faut le garder */}
-      {/* {preview && (
-        <DefaultModal
-          open={preview}
-          title={"Previsualisation"}
-          onClose={() => setPreview(false)}
-        >
-          <ImagePreview imageAlt="Photo de profil" imageUrl={MyPicture} />
-        </DefaultModal>
-      )} */}
+        </div>
+      </div>
     </Box>
   );
 };
@@ -122,21 +104,32 @@ const Profils = () => {
 export default Profils;
 
 const ShowInput = ({ label, value }: { label: string; value: ReactNode }) => {
+  const screen = useScreenSize();
+
   return (
-    <Box className="flex items-center justify-between py-1">
+    <Box
+      className={classNames(
+        "flex py-1 w-full",
+        _.includes(["sm", "xs"], screen) && "flex-col",
+        _.includes(["lg", "xl", "md"], screen) && "justify-start items-center"
+      )}
+    >
       <InputLabel
         style={{
           fontWeight: 700,
           fontSize: "20px",
-          fontStyle: "italic",
+          width: "300px",
         }}
+        className="uppercase"
       >
         {label}:
       </InputLabel>
       <span
         style={{
           fontSize: "20px",
+          marginLeft: _.includes(["sm", "xs"], screen) ? "15px" : undefined,
         }}
+        className="break-words"
       >
         {value}
       </span>

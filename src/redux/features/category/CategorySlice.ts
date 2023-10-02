@@ -8,8 +8,8 @@ export interface CategoryState {
 }
 
 const initialState: CategoryState = {
-  currentPageId: SidebarItems[0].key,
-  currentPageLabel: SidebarItems[0].label,
+  currentPageId: SidebarItems[1].key,
+  currentPageLabel: SidebarItems[1].label,
 };
 
 export const categorySlice = createSlice({

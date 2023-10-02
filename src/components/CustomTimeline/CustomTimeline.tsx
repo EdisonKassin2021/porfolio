@@ -40,11 +40,7 @@ const TimelineEntry: React.FC<TimelineItemProps> = ({
         <Box>
           <div className="font-semibold mb-1">{title}</div>
           {subTitle && <div className="font-light text-sm">{subTitle}</div>}
-          {description && (
-            <div>
-              <p>{description}</p>
-            </div>
-          )}
+          {description && <div>{description}</div>}
         </Box>
       </TimelineContent>
     </TimelineItem>

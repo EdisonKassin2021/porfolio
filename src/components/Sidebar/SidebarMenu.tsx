@@ -1,13 +1,11 @@
-import { Box } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import _ from "lodash";
 import { ISidebarItem, SidebarItems } from "../../utils/constants/SidebarItem";
 import { makeStyles, ListItem, List } from "@material-ui/core";
 import classNames from "classnames";
 import {
-  White,
   secondSidebarBackground,
   sidebarItemClicked,
-  sidebarItemHover,
   whiteColor,
 } from "../../assets/colors";
 import { useNavigate } from "react-router-dom";
@@ -21,25 +19,16 @@ import { useScreenSize } from "../../hooks/useScreenSize";
 
 const useStyle = makeStyles({
   ListItem: ({ size }: any) => ({
-    padding: _.includes(["lg", "md", "sm", "xs"], size) ? "10px" : "10px 30px",
-    display: "flex",
-    justifyContent: "start",
-    fontSize: _.includes(["lg", "xl"], size) ? "18px" : "16px",
-    borderRadius: "5px",
-
-    "&:hover": {
-      margin: "0 8px",
-      background: sidebarItemHover,
-      color: secondSidebarBackground,
-      width: "100%",
-    },
+    color: secondSidebarBackground,
+    fontSize: _.includes(["lg", "xl"], size) ? "13px" : "16px",
   }),
 });
 
 interface ISidebarMenu {
   onClose?: () => void;
+  showLabel?: boolean;
 }
-const SidebarMenu = ({ onClose }: ISidebarMenu) => {
+const SidebarMenu = ({ onClose, showLabel }: ISidebarMenu) => {
   const size = useScreenSize();
   const classes = useStyle({ size });
   const currentPageId = useAppSelector(getCurrentPageId);
@@ -63,8 +52,8 @@ const SidebarMenu = ({ onClose }: ISidebarMenu) => {
     navigate(`${BASE_ROUTE}/${item.key}`);
   };
   return (
-    <Box className=" flex items-center justify-center">
-      <List className="w-full flex flex-col items-center justify-center">
+    <Box className="flex items-center justify-center">
+      <List className="flex flex-col gap-3">
         {_.map(SidebarItems, (item: ISidebarItem) => (
           <ListItem
             key={item.key}
@@ -73,25 +62,27 @@ const SidebarMenu = ({ onClose }: ISidebarMenu) => {
             }
             className={classNames(
               classes.ListItem,
-              "cursor-pointer flex items-center gap-5"
+              "cursor-pointer flex items-center",
+              showLabel && "gap-3"
             )}
             style={
               currentPageId === item.key
                 ? {
                     background: sidebarItemClicked,
                     color: whiteColor,
-                    fontWeight: 700,
-                    border: `1px solid ${White}`,
+                    borderRadius: "10px",
                   }
                 : undefined
             }
           >
-            {item.Icon && (
-              <span>
-                <item.Icon />
-              </span>
-            )}
-            <span>{item.label}</span>
+            <Tooltip title={item.label} arrow placement="right">
+              {item.Icon && (
+                <span>
+                  <item.Icon style={{ fontWeight: 200 }} />
+                </span>
+              )}
+            </Tooltip>
+            {showLabel && <span>{item.label}</span>}
           </ListItem>
         ))}
       </List>

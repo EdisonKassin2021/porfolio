@@ -4,20 +4,20 @@ import classNames from "classnames";
 import SmallIconButton from "../SmallIconButton";
 import { useScreenSize } from "../../hooks/useScreenSize";
 import _ from "lodash";
-import SocialMedias from "../Sidebar/SocialMedias";
+// import SocialMedias from "../Sidebar/SocialMedias";
 import { useState } from "react";
 import DrawerComponent from "../Drawer/Drawer";
-import LogoutIcon from "@mui/icons-material/Logout";
-import supabase from "../../configs/supabase";
-import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
-import { getSessionToken, logout } from "../../redux/features/login/LoginSlice";
-import { sidebarItemClicked } from "../../assets/colors";
+// import LogoutIcon from "@mui/icons-material/Logout";
+// import supabase from "../../configs/supabase";
+// import { useAppDispatch, useAppSelector } from "../../redux/app/hooks";
+// import { getSessionToken, logout } from "../../redux/features/login/LoginSlice";
+// import { sidebarItemClicked } from "../../assets/colors";
 
 const Header = () => {
   const screen = useScreenSize();
   const [open, setOpen] = useState(false);
-  const token = useAppSelector(getSessionToken);
-  const dispatch = useAppDispatch();
+  // const token = useAppSelector(getSessionToken);
+  // const dispatch = useAppDispatch();
 
   const handleClick = (
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>
@@ -40,7 +40,7 @@ const Header = () => {
         </Hidden>
       </Box>
 
-      <Box className={classNames(token && "flex items-center gap-5")}>
+      {/* <Box className={classNames(token && "flex items-center gap-5")}>
         <Hidden only={["lg", "md", "xl"]}>
           <SocialMedias classe="flex items-center gap-5" />
         </Hidden>
@@ -72,7 +72,7 @@ const Header = () => {
             </SmallIconButton>
           )}
         </div>
-      </Box>
+      </Box> */}
 
       {open && <DrawerComponent onClose={() => setOpen(false)} />}
     </Box>

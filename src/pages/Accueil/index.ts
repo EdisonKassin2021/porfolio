@@ -1,2 +1,2 @@
-import Accueil from "./Accueil";
-export default Accueil;
+import Dashboard from "../Dashboard/Dashboard";
+export default Dashboard;

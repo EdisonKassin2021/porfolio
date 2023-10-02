@@ -24,7 +24,7 @@ const DrawerComponent = ({ onClose }: IDrawerComponent) => {
             }}
           />
         </Box>
-        <SidebarMenu onClose={onClose} />
+        <SidebarMenu onClose={onClose} showLabel />
       </Box>
       <Button onClick={onClose}>Fermer</Button>
     </Drawer>

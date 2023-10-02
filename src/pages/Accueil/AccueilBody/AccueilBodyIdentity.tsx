@@ -113,7 +113,7 @@ const AccueilBodyIdentity = () => {
           Full Stack Developer
         </h2>
 
-        <p className="text-justify">
+        <div className="text-justify">
           Basé à Dakar, je suis actuellement Fullstack Developer chez{" "}
           <Chip
             label={
@@ -134,7 +134,7 @@ const AccueilBodyIdentity = () => {
           sont principalement React JS en front end et Node JS en backend.
           Passionné, motivé et très dynamique, je suis doté de forte capacité
           d'adaptation.
-        </p>
+        </div>
       </Box>
     </Box>
   );

@@ -11,10 +11,14 @@ import GitHubIcon from "@mui/icons-material/GitHub";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import React from "react";
+import { useAppDispatch } from "../../../redux/app/hooks";
+import { setNewPage } from "../../../redux/features/category/CategorySlice";
 
 const AccueilHeader = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -57,7 +61,20 @@ const AccueilHeader = () => {
                 withTarget={false}
                 noApplyLink
                 onClick={() => {
-                  navigate(`${BASE_ROUTE}/maintenance`); //TODO: A corriger => envoyer plus tard vers `${BASE_ROUTE}/home`
+                  if (import.meta.env.VITE_ENV === "local") {
+                    dispatch(
+                      setNewPage({
+                        itemKey: "dashboard",
+                        itemLabel: "Tableau de bords",
+                      })
+                    );
+                  }
+
+                  navigate(
+                    import.meta.env.VITE_ENV === "local"
+                      ? `${BASE_ROUTE}/dashboard`
+                      : `${BASE_ROUTE}/maintenance`
+                  );
                 }}
               />
             </List>
@@ -125,7 +142,20 @@ const AccueilHeader = () => {
             withTarget={false}
             noApplyLink
             onClick={() => {
-              navigate(`${BASE_ROUTE}/maintenance`); //TODO: A corriger => envoyer plus tard vers `${BASE_ROUTE}/home`
+              if (import.meta.env.VITE_ENV === "local") {
+                dispatch(
+                  setNewPage({
+                    itemKey: "dashboard",
+                    itemLabel: "Tableau de bords",
+                  })
+                );
+              }
+
+              navigate(
+                import.meta.env.VITE_ENV === "local"
+                  ? `${BASE_ROUTE}/dashboard`
+                  : `${BASE_ROUTE}/maintenance`
+              );
             }}
           />
           <Divider />

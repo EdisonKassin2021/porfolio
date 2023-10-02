@@ -3,10 +3,10 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   circle: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 15,
     borderRadius: "50%",
-    margin: "0 5px",
+    margin: "0 1px",
   },
   green: {
     backgroundColor: "#4CAF50",

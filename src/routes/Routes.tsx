@@ -1,7 +1,6 @@
 import { Routes, Route, useLocation, Navigate } from "react-router-dom";
 import { BASE_ROUTE } from "./constants";
 import App from "../App";
-import Accueil from "../pages/Accueil/Accueil";
 import Layout from "./Layout";
 import Profils from "../pages/Profils";
 import Projects from "../pages/Projects";
@@ -18,9 +17,12 @@ import ScreenOutlet from "../pages/ScreenOutlet";
 import BlogsForm from "../pages/Blogs/BlogsForm";
 import Home from "../pages/Accueil/Home";
 import Maintenance from "../pages/Maintenance/Maintenance";
+import Dashboard from "../pages/Accueil";
+import { useScreenSize } from "../hooks/useScreenSize";
 
 const RouteGroups = () => {
   const { pathname } = useLocation();
+  const screen = useScreenSize();
   return (
     <Layout
       hidden={
@@ -41,9 +43,9 @@ const RouteGroups = () => {
         <Route path={`${BASE_ROUTE}/maintenance`} element={<Maintenance />} />
 
         <Route path={BASE_ROUTE} element={<App />}>
-          <Route path="home" element={<Accueil />} />
-          <Route path="home/voir-plus" element={<Accueil />} />
+          {/* <Route path="home/voir-plus" element={<Accueil />} /> */}
 
+          <Route path="dashboard" element={<Dashboard />} />
           <Route path="profils" element={<Profils />} />
           <Route path="projects" element={<Projects />} />
           <Route path="services" element={<Services />} />
@@ -51,8 +53,12 @@ const RouteGroups = () => {
 
           <Route path="blogs" element={<ScreenOutlet />}>
             <Route path="" element={<Blogs />} />
-            <Route path="create" element={<BlogsForm />} />
-            <Route path="edit/:blog_id" element={<BlogsForm />} />
+            {!_.includes(["xs", "sm", "md"], screen) && (
+              <Route path="create" element={<BlogsForm />} />
+            )}
+            {!_.includes(["xs", "sm", "md"], screen) && (
+              <Route path="edit/:blog_id" element={<BlogsForm />} />
+            )}
           </Route>
 
           <Route path="cv" element={<CustomCV />} />

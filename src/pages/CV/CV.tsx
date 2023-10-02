@@ -88,7 +88,7 @@ export const ChildrenLayout = ({ children }: { children: React.ReactNode }) => {
       }}
     >
       {_.map(isArray ? children : [children], (child: any, index: number) => (
-        <Box className={classNames("flex flex-col gap-5 mb-5")}>
+        <Box className={classNames("flex flex-col gap-5 mb-5")} key={index}>
           {child}
           {index !== _.size(children) - 1 && (
             <Divider

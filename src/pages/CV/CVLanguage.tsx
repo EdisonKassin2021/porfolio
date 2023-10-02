@@ -12,8 +12,11 @@ const CVLanguage = () => {
   return (
     <CVLayout title="Langages" noEditButton={false}>
       <Box className="flex flex-col gap-1">
-        {_.map(CV.languages, (lang: ILanguage) => (
-          <div className="flex items-center px-5 gap-5">
+        {_.map(CV.languages, (lang: ILanguage, index: number) => (
+          <div
+            className="flex items-center px-5 gap-5"
+            key={`${lang.intitule}-${index}`}
+          >
             <span style={{ width: "100px" }}>{lang.intitule}: </span>
             <span>
               <Rating name="read-only" value={lang.niveau} readOnly max={6} />

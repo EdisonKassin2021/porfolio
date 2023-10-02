@@ -24,8 +24,11 @@ const CVFormation = () => {
         ),
         description: (
           <List style={{ fontSize: "15px" }}>
-            {_.map(exp.description, (desc: string) => (
-              <ListItem className="flex items-center gap-5 text-justify">
+            {_.map(exp.description, (desc: string, index: number) => (
+              <ListItem
+                className="flex items-center gap-5 text-justify"
+                key={`${index}`}
+              >
                 <span>👉</span>
                 <span>{desc}</span>
               </ListItem>
